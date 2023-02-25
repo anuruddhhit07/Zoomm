@@ -9,6 +9,7 @@ import RendorXY from "./Axis/axisProp"
 import {
   zoomIdentity
 } from "d3";
+import { dataReducer } from "./Reducer/data_red";
 
 const ChartContainer = () => {
   //this hook allows us to access the dispatch function
@@ -72,6 +73,8 @@ const ChartContainer = () => {
     yScale.domain(newYScale.domain());
   }
 
+
+
   return (
     <div>
       <div>
@@ -84,9 +87,9 @@ const ChartContainer = () => {
       currentYZoomState={currentYZoomState}
       currentXZoomState={currentXZoomState}
       setglobalzoom={handleChangeZoom} setxzzoom={handleChangeXZoom} setyzzoom={handleChangeYZoom}>
-        <Circle key={'cir'} />
+        <Circle key={'cir'} data={data} xScale={xScale} yScale={yScale}  />
         <RendorXY
-        // xScale={xScale} yScale={yScale} 
+         xScale={xScale} yScale={yScale} 
         />
       </ZoomCanvas >
     </div>

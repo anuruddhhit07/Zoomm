@@ -24,36 +24,16 @@ const ZoomCanvas = ({xScale,yScale,
   const { width, height, margin } = useSelector(
     (state) => state.dimensionReducer
   );
-  // props.onChange(event.target.value)
-
-  // const [currentGlobalZoomState, setCurrentGlobalZoomState] = useState(
-  //   zoomIdentity
-  // );
-  // const [currentYZoomState, setCurrentYZoomState] = useState(zoomIdentity);
-  // const [currentXZoomState, setCurrentXZoomState] = useState(zoomIdentity);
-
-  // console.log("objectooooooo",xScale(0))
-
-  // if (currentGlobalZoomState) {
-  //   console.log('currentXZoomState',currentXZoomState,currentGlobalZoomState);
-  //   const newXScale = currentXZoomState.rescaleX(xScale);
-  //   xScale.domain(newXScale.domain());
-  // }
-
-  // if (currentGlobalZoomState) {
-  //   const newYScale = currentYZoomState.rescaleY(yScale);
-  //   yScale.domain(newYScale.domain());
-  // }
-
-
+  
 
   useEffect(() => {
     
         // updatesvg()
         zoomsvg()
 
-  }, [currentXZoomState,
-    currentYZoomState,
+  }, [
+     currentXZoomState,
+     currentYZoomState,
     currentGlobalZoomState,
     // xScale,
     // yScale
@@ -61,7 +41,6 @@ const ZoomCanvas = ({xScale,yScale,
 
 
   const zoomsvg=()=>{
-    console.log("gdfhgfhfgjnghmghmggh")
     const widhth2=width-margin.left-margin.right
     const height2=width-margin.top-margin.bottom
 
@@ -127,10 +106,10 @@ const ZoomCanvas = ({xScale,yScale,
     // Checking isValidElement is the safe way and avoids a
     // typescript error too.
 
-    const newXScale = currentXZoomState.rescaleX(xScale);
-    xScale.domain(newXScale.domain());
+    // const newXScale = currentXZoomState.rescaleX(xScale);
+    // xScale.domain(newXScale.domain());
 
-    console.log("object",xScale(0));
+    // console.log("object",xScale(0));
     if (React.isValidElement(child)) {
       return React.cloneElement(child, { xScale:xScale,yScale:yScale });
     }
