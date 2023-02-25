@@ -45,18 +45,18 @@ const ChartContainer = () => {
   };
 
   const handleChangeZoom = (newValue) => {
-    setsetglobalzoom(newValue)
-    console.log('globafgfglzoom', globalzoom)
+    setCurrentGlobalZoomState(newValue)
+    // console.log('globafgfglzoom', currentGlobalZoomState)
   }
 
   const handleChangeXZoom = (newValue) => {
     setCurrentXZoomState(newValue)
-    console.log('globafgfglzoom', globalzoom)
+   
   }
 
   const handleChangeYZoom = (newValue) => {
     setCurrentYZoomState(newValue)
-    console.log('globafgfglzoom', globalzoom)
+    
   }
 
 
