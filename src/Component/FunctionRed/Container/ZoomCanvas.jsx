@@ -14,7 +14,10 @@ import {
   zoomTransform
 } from "d3";
 
-const ZoomCanvas = ({xScale,yScale,changeh, children }) => {
+const ZoomCanvas = ({xScale,yScale,
+  currentGlobalZoomState, currentYZoomState,currentXZoomState,
+  setglobalzoom,setxzzoom,setyzzoom,
+  children }) => {
   // const ref = useRef(null);
   console.log(xScale);
   const ref = useRef(null);
@@ -23,13 +26,13 @@ const ZoomCanvas = ({xScale,yScale,changeh, children }) => {
   );
   // props.onChange(event.target.value)
 
-  const [currentGlobalZoomState, setCurrentGlobalZoomState] = useState(
-    zoomIdentity
-  );
-  const [currentYZoomState, setCurrentYZoomState] = useState(zoomIdentity);
-  const [currentXZoomState, setCurrentXZoomState] = useState(zoomIdentity);
+  // const [currentGlobalZoomState, setCurrentGlobalZoomState] = useState(
+  //   zoomIdentity
+  // );
+  // const [currentYZoomState, setCurrentYZoomState] = useState(zoomIdentity);
+  // const [currentXZoomState, setCurrentXZoomState] = useState(zoomIdentity);
 
-  console.log("objectooooooo",xScale(0))
+  // console.log("objectooooooo",xScale(0))
 
   // if (currentGlobalZoomState) {
   //   console.log('currentXZoomState',currentXZoomState,currentGlobalZoomState);
@@ -37,10 +40,10 @@ const ZoomCanvas = ({xScale,yScale,changeh, children }) => {
   //   xScale.domain(newXScale.domain());
   // }
 
-  if (currentGlobalZoomState) {
-    const newYScale = currentYZoomState.rescaleY(yScale);
-    yScale.domain(newYScale.domain());
-  }
+  // if (currentGlobalZoomState) {
+  //   const newYScale = currentYZoomState.rescaleY(yScale);
+  //   yScale.domain(newYScale.domain());
+  // }
 
 
 
@@ -86,22 +89,22 @@ const ZoomCanvas = ({xScale,yScale,changeh, children }) => {
       const isZoomingY =
         point[1] > margin.top && point[1] < height2 - 50;
         isZoomingX &&
-        setCurrentXZoomState(
+        setxzzoom(
           currentXZoomState
             .translate((newX - prevX) / prevK, 0)
             .scale(newK / prevK)
         );
       isZoomingY &&
-        setCurrentYZoomState(
+      setyzzoom(
           currentYZoomState
             .translate(0, (newY - prevY) / prevK)
             .scale(newK / prevK)
         );
 
       // Keeping track of the previous transform object
-      setCurrentGlobalZoomState(event.transform);
+      // setCurrentGlobalZoomState(event.transform);
       // console.log("firstfgdgffg",changeh)
-      changeh(event.transform)
+      setglobalzoom(event.transform)
 
 
     }

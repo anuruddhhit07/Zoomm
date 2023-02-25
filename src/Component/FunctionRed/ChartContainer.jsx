@@ -25,13 +25,15 @@ const ChartContainer = () => {
 
   const [userId, setUserId] = useState("");
   const [open, setOpen] = useState(false);
-  const [globalzoom, setsetglobalzoom] = useState(zoomIdentity);
+  const [currentGlobalZoomState, setCurrentGlobalZoomState] = useState(zoomIdentity);
+  const [currentYZoomState, setCurrentYZoomState] = useState(zoomIdentity);
+  const [currentXZoomState, setCurrentXZoomState] = useState(zoomIdentity);
 
 
 
   // console.log("intilize data", data);
 
-  const { xScale, yScale } = useController({ data, width, height, margin ,globalzoom});
+  const { xScale, yScale } = useController({ data, width, height, margin, currentGlobalZoomState });
   // console.log("intilize constorl", xScale, yScale);
 
   useEffect(() => {
@@ -42,9 +44,32 @@ const ChartContainer = () => {
     dispatch(setDim(wi_inc, hi_inc, opert));
   };
 
-  const handleChangeZoom=(newValue)=> {
+  const handleChangeZoom = (newValue) => {
     setsetglobalzoom(newValue)
-    console.log('globafgfglzoom',globalzoom)
+    console.log('globafgfglzoom', globalzoom)
+  }
+
+  const handleChangeXZoom = (newValue) => {
+    setCurrentXZoomState(newValue)
+    console.log('globafgfglzoom', globalzoom)
+  }
+
+  const handleChangeYZoom = (newValue) => {
+    setCurrentYZoomState(newValue)
+    console.log('globafgfglzoom', globalzoom)
+  }
+
+
+
+  if (currentXZoomState) {
+
+    const newXScale = currentXZoomState.rescaleX(xScale);
+    xScale.domain(newXScale.domain());
+  }
+
+  if (currentYZoomState) {
+    const newYScale = currentYZoomState.rescaleY(yScale);
+    yScale.domain(newYScale.domain());
   }
 
   return (
@@ -54,9 +79,13 @@ const ChartContainer = () => {
         <button onClick={() => setwidth(10, 10, -1)}>--</button>
       </div>
 
-      <ZoomCanvas xScale={xScale} yScale={yScale} changeh={handleChangeZoom}>
+      <ZoomCanvas xScale={xScale} yScale={yScale} 
+      currentGlobalZoomState={currentGlobalZoomState}
+      currentYZoomState={currentYZoomState}
+      currentXZoomState={currentXZoomState}
+      setglobalzoom={handleChangeZoom} setxzzoom={handleChangeXZoom} setyzzoom={handleChangeYZoom}>
         <Circle key={'cir'} />
-        <RendorXY 
+        <RendorXY
         // xScale={xScale} yScale={yScale} 
         />
       </ZoomCanvas >
