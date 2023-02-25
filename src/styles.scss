@@ -1,0 +1,60 @@
+// https://stackoverflow.com/questions/9351045/simple-div-with-header-footer-and-body
+
+.container {
+  width: 900px;
+  height: 900px;
+  max-height: 900px;
+  margin: auto;
+  border: 2px solid #3032b8;
+  background-color: #e49595;
+  box-shadow: 0px 2px 7px #292929;
+  -moz-box-shadow: 0px 2px 7px #292929;
+  -webkit-box-shadow: 0px 2px 7px #292929;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+.mainbody,
+.header,
+.footer {
+  padding: 15px;
+}
+.mainbody {
+  margin-top: 0;
+  min-height: 600px;
+  max-height: 740px;
+  background-color: #ad9494;
+  overflow-y: scroll;
+}
+.header {
+  height: 80px;
+  border-bottom: 2px solid #0d462b;
+  background-color: #d3db88;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.footer {
+  height: 60px;
+  background-color: whiteSmoke;
+  border-top: 1px solid #DDD;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.grid line {
+  stroke: rgb(241, 129, 129);
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}

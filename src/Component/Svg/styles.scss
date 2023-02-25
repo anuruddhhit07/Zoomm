@@ -1,0 +1,96 @@
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+
+h1 {
+  font-size:xx-large;
+}
+.vis-container {
+  background-color:blue;
+  position: relative; 
+ height: 60vh; 
+ padding: 0%;
+ overflow-y: scroll;
+ 
+}
+.graph-svg-component {
+    background-color: #f4f5f0;
+    position: absolute; 
+    margin :2%;
+    overflow: scroll;
+}
+
+.canvas-container{
+  background-color: beige;
+  position: relative;
+  padding: 0%;
+  margin: auto;
+  overflow-y: scroll;
+  border: 1px solid red;
+}
+
+.svgcd-container{
+  background-color: rgb(95, 165, 197);
+  position: relative;
+  // padding: 0%;
+  height: 70vh; 
+  // margin: auto;
+  overflow-y: scroll;
+  border: 1px solid red;
+}
+
+.axis line, .axis path{
+  stroke: rgb(216, 16, 16);
+  fill: none;
+  stroke-opacity: 0.5;
+  stroke-width: 0.5px;
+}
+
+.axis text{
+  fill: rgb(12, 12, 12);
+  stroke: none;
+  opacity: 0.75;
+}
+
+.up{
+  stroke: #399F6E;
+  shape-rendering:crispEdges;
+  stroke-miterlimit: 1;
+  fill: #399F6E;
+}
+
+.down{
+  stroke: #FE4747;
+  shape-rendering:crispEdges;
+  stroke-miterlimit: 1;
+  fill: #FE4747;
+}
+
+.grid {
+  stroke: #000000;
+  stroke-width: .5;
+  stroke-dasharray:"10,3"
+}
+
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.7;
+}
+
+.grid path {
+    stroke-width: 0;
+}

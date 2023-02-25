@@ -1,0 +1,44 @@
+div.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    background-color: rgb(171, 170, 243);
+  }
+
+  .mainsvg {
+    display: inline-block;
+    position: relative;
+    // width: 50%;
+    // height: 50%;
+    vertical-align: top;
+    background-color: rgb(204, 228, 228);
+  }
+
+  .focus{
+    // display: inline-block;
+    // position: relative;
+    // // width: 50%;
+    // // height: 50%;
+    // vertical-align: top;
+    background-color: rgb(43, 228, 228);
+  }
+  
+  .line {
+  fill: none;
+  stroke: blue;
+  stroke-width: 1.5;
+}
+
+rect {
+  opacity: 0.8;
+}
+
+rect.green {
+  fill: green;
+}
+
+rect.red {
+  fill: red;
+}
