@@ -3,10 +3,10 @@ import * as d3 from 'd3';
 
 
 function LineChart({ data, xScale, yScale }) {
-  const svgRef = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
-    const svg = d3.select(svgRef.current);
+  //  const svg = d3.select(svgRef.current);
 
     // Define x and y scales
   //  const xScale = d3.scaleLinear()
@@ -23,15 +23,25 @@ function LineChart({ data, xScale, yScale }) {
       .y(d => yScale(d.close))
       .curve(d3.curveMonotoneX);
 
+
+if(ref.current){
     // Draw line
+    const svg = d3.select(ref.current)
+    svg.selectAll("*").remove()
     svg.append("path")
       .datum(data)
       .attr("class", "line")
       .attr("d", line);
-  }, [data]);
+}
+      
+      
+      
+      
+  }, [data,xScale,yScale]);
 
   return (
-    <g ref={svgRef} >
+    <g ref={ref} >
     </g>
   );
 }
+export default LineChart

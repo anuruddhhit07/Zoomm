@@ -96,7 +96,7 @@ const ChartContainer = () => {
        // xScale={xScale} yScale={yScale} 
         />
         
-       
+       <LineChart />
         
         
       </ZoomCanvas >
