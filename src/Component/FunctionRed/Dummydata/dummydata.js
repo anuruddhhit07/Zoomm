@@ -48,6 +48,18 @@ export const testdata = [
     {"time": 1387212570, "open": 395, "close": 253, "high": 424, "low": 213}
   ];
   
+   export const ohlcdata= ()=> {
+        var arrayObj = testdata;
+       var i;
+
+       for (i = 0; i < arrayObj.length; i++) {
+          
+         arrayObj[i].time = new Date(arrayObj[i]["time"] * 1000);
+          delete arrayObj[i]["time"];
+       }
+       console.log("res obj =>", arrayObj);
+       return arrayObj
+      }
   
   export const arraydata=()=>{
     const dataset = []

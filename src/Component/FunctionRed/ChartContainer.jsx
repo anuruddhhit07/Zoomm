@@ -7,6 +7,9 @@ import ZoomCanvas from "./Container/ZoomCanvas";
 import Circle from "./Shape/Circle";
 import LineChart from "./Shape/LineChart"
 import RendorXY from "./Axis/axisProp"
+import CandlestickChart from "./Shape/Candlestick"
+
+
 import {
   zoomIdentity
 } from "d3";
@@ -33,7 +36,7 @@ const ChartContainer = () => {
 
 
 
-  // console.log("intilize data", data);
+  console.log("intilize data", data);
 
   const { xScale, yScale } = useController({ data, width, height, margin, currentGlobalZoomState });
   // console.log("intilize constorl", xScale, yScale);
@@ -97,6 +100,8 @@ const ChartContainer = () => {
         />
         
        <LineChart />
+       
+       <CandlestickChart />
         
         
       </ZoomCanvas >

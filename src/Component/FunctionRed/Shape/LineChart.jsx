@@ -4,6 +4,14 @@ import * as d3 from 'd3';
 
 function LineChart({ data, xScale, yScale }) {
   const ref = useRef(null);
+  
+  
+    // Define line generator
+    const line = d3.line()
+      .x((d, i) => xScale(d.time))
+      .y(d => yScale(d.close))
+      //.curve(d3.curveMonotoneX);
+  
 
   useEffect(() => {
   //  const svg = d3.select(svgRef.current);
@@ -18,16 +26,23 @@ function LineChart({ data, xScale, yScale }) {
      // .range([height, 0]);
 
     // Define line generator
-    const line = d3.line()
-      .x((d, i) => xScale(d.time))
-      .y(d => yScale(d.close))
-      .curve(d3.curveMonotoneX);
+   // const line = d3.line()
+     // .x((d, i) => xScale(d.time))
+     // .y(d => yScale(d.close))
+    //  .curve(d3.curveMonotoneX);
 
 
 if(ref.current){
     // Draw line
     const svg = d3.select(ref.current)
-    svg.selectAll("*").remove()
+   
+    // Define line generator
+   // const line = d3.line()
+     // .x((d, i) => xScale(d.time))
+    //  .y(d => yScale(d.close))
+    //  .curve(d3.curveMonotoneX);
+      
+     svg.selectAll("*").remove()
     svg.append("path")
       .datum(data)
       .attr("class", "line")
