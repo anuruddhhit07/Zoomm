@@ -10,7 +10,7 @@ import { api_url } from "../Config/index";
 import axios, * as others from "axios";
 // const axios = require("axios");
 
-import {testdata} from "../Dummydata/dummydata"
+import {testdata,ohlcdata} from "../Dummydata/dummydata"
 
 export function getData() {
   return (dispatch) => {
@@ -18,19 +18,21 @@ export function getData() {
     //axios
      // .get(`${api_url}/data`)
     //  .then(function (res) {
-       // var arrayObj = res.data.data;
-      //  var i;
+       // var arrayObj = testdata;
+     //   console.log(testdata)
+     //  var i;
 
       //  for (i = 0; i < arrayObj.length; i++) {
           
-       //   arrayObj[i].time = new Date(arrayObj[i]["unixtime"] * 1000);
-          // delete arrayObj[i]["unixtime"];
-      //  }
-     //   console.log("res obj =>", arrayObj);
+      //  arrayObj[i].time = new Date(arrayObj[i]["unixtime"] * 1000);
+      //    delete arrayObj[i]["unixtime"];
+       // }
+      //  
+      //  console.log("res obj =>", arrayObj);
 
         dispatch({
           type: GET_USER_SUCCESS,
-          payload: { data: testdata },
+          payload: { data: ohlcdata() },
         });
     //  })
    //   .catch(function (error) {

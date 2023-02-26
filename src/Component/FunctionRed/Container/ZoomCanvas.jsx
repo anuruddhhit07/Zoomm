@@ -44,7 +44,8 @@ const ZoomCanvas = ({data,xScale,yScale,
     const widhth2=width-margin.left-margin.right
     const height2=width-margin.top-margin.bottom
 
-    const svg = select(ref.current);
+    //const svg = select(ref.current);
+    const svg = select(".listrect")
     const center = (event, target) => {
       if (event.sourceEvent) {
         const p = pointers(event, target);
@@ -136,7 +137,7 @@ const ZoomCanvas = ({data,xScale,yScale,
 
       <svg className="mainsvg" id={"bg1"} height={height} width={width}>
         <g ref={ref} transform={`translate(${margin.left}, ${margin.top})`}>
-          <rect id={"listrect"} height={height-margin.top-margin.bottom} width={width-margin.left-margin.right} fill="none" pointerEvents="all" />
+          <rect className={"listrect"} height={height-margin.top-margin.bottom} width={width-margin.left-margin.right}  pointerEvents="all" />
 
           <g>{childrenWithProps}</g>
         </g>

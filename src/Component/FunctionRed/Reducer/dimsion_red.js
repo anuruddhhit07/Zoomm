@@ -7,9 +7,9 @@ import {
   } from "../ActionTypes/data_acty";
   const initialState = {
     loading: false,
-    width: 300,
-    height: 300,
-    margin:{top:10,bottom:25,left:50,right:10},
+    width: 600,
+    height: 650,
+    margin:{top:10,bottom:40,left:50,right:30},
     error: "",
   };
 
