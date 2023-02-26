@@ -14,7 +14,7 @@ import {
   zoomTransform
 } from "d3";
 
-const ZoomCanvas = ({xScale,yScale,
+const ZoomCanvas = ({data,xScale,yScale,
   currentGlobalZoomState, currentYZoomState,currentXZoomState,
   setglobalzoom,setxzzoom,setyzzoom,
   children }) => {
@@ -111,7 +111,7 @@ const ZoomCanvas = ({xScale,yScale,
 
     // console.log("object",xScale(0));
     if (React.isValidElement(child)) {
-      return React.cloneElement(child, { xScale:xScale,yScale:yScale });
+      return React.cloneElement(child, {data:data, xScale:xScale,yScale:yScale });
     }
     return child;
   });
