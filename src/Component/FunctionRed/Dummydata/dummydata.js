@@ -49,13 +49,16 @@ export const testdata = [
   ];
   
    export const ohlcdata= ()=> {
+     const parser = d3.timeParse("%s");
         var arrayObj = testdata;
        var i;
 
        for (i = 0; i < arrayObj.length; i++) {
-          
-         arrayObj[i].time = new Date(arrayObj[i]["time"] * 1000);
-          delete arrayObj[i]["time"];
+          //console.log(arrayObj[i].time)
+        // arrayObj[i].time = new Date(arrayObj[i]["time"] * 1000);
+        arrayObj[i].time=parser(arrayObj[i]["time"])
+         // delete arrayObj[i]["time"];
+          //console.log(arrayObj[i].time)
        }
        console.log("res obj =>", arrayObj);
        return arrayObj

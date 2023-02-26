@@ -36,7 +36,7 @@ const ChartContainer = () => {
 
 
 
-  console.log("intilize data", data);
+  console.log("intilize data", data[0]);
 
   const { xScale, yScale } = useController({ data, width, height, margin, currentGlobalZoomState });
   // console.log("intilize constorl", xScale, yScale);

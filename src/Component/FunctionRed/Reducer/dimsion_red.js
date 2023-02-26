@@ -8,8 +8,8 @@ import {
   const initialState = {
     loading: false,
     width: 600,
-    height: 700,
-    margin:{top:10,bottom:25,left:50,right:30},
+    height: 650,
+    margin:{top:10,bottom:40,left:50,right:30},
     error: "",
   };
 
