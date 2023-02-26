@@ -5,6 +5,7 @@ import { getData, setDim } from "./Action/data_ac";
 import useController from "./Controller/Controller";
 import ZoomCanvas from "./Container/ZoomCanvas";
 import Circle from "./Shape/Circle";
+import LineChart from "./Shape/LineChart"
 import RendorXY from "./Axis/axisProp"
 import {
   zoomIdentity
@@ -82,15 +83,22 @@ const ChartContainer = () => {
         <button onClick={() => setwidth(10, 10, -1)}>--</button>
       </div>
 
-      <ZoomCanvas xScale={xScale} yScale={yScale} 
+      <ZoomCanvas data={data}
+      xScale={xScale} yScale={yScale} 
       currentGlobalZoomState={currentGlobalZoomState}
       currentYZoomState={currentYZoomState}
       currentXZoomState={currentXZoomState}
       setglobalzoom={handleChangeZoom} setxzzoom={handleChangeXZoom} setyzzoom={handleChangeYZoom}>
-        <Circle key={'cir'} data={data} xScale={xScale} yScale={yScale}  />
+        <Circle key={'cir'}
+        // data={data} xScale={xScale} yScale={yScale} 
+          />
         <RendorXY
-         xScale={xScale} yScale={yScale} 
+       // xScale={xScale} yScale={yScale} 
         />
+        
+       <LineChart />
+        
+        
       </ZoomCanvas >
     </div>
   );
