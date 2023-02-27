@@ -26,7 +26,7 @@ const Circle = ({data,xScale,yScale}) => {
     },[xScale,yScale])
 
 
-    return <circle ref={ref} />
+    return <circle ref={ref} clipPath="url(#clipping)" />
 }
 
 export default Circle;

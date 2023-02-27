@@ -35,6 +35,7 @@ const CandlestickChart = ({ data,xScale,yScale }) => {
       .data(data)
       .enter()
       .append('rect')
+      .attr("clip-path", "url(#clipping)")
       .attr('x', (d) => xScale(d.time))
       .attr('y', (d) => yScale(Math.max(d.open, d.close)))
       .attr('width', 5)

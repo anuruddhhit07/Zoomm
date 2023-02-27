@@ -46,6 +46,7 @@ if(ref.current){
     svg.append("path")
       .datum(data)
       .attr("class", "line")
+      .attr("clip-path", "url(#clipping)")
       .attr("d", line);
 }
       
