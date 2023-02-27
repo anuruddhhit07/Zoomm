@@ -1,4 +1,4 @@
-import React, { useRef,useEffect,useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 import "./styles.scss";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,41 +11,49 @@ import {
   zoomIdentity,
   max,
   zoom,
-  zoomTransform
+  zoomTransform,
 } from "d3";
 
-const ZoomCanvas = ({data,xScale,yScale,
-  currentGlobalZoomState, currentYZoomState,currentXZoomState,
-  setglobalzoom,setxzzoom,setyzzoom,
-  children }) => {
+const ZoomCanvas = ({
+  data,
+  xScale,
+  yScale,
+  currentGlobalZoomState,
+  currentYZoomState,
+  currentXZoomState,
+  setglobalzoom,
+  setxzzoom,
+  setyzzoom,
+  children,
+}) => {
   // const ref = useRef(null);
   console.log(xScale);
   const ref = useRef(null);
   const { width, height, margin } = useSelector(
     (state) => state.dimensionReducer
   );
-  
+  const [p1, setp1] = useState({ x: 0, y: 0 });
+
+  const widhth2 = width - margin.left - margin.right;
+  const height2 = height - margin.top - margin.bottom;
 
   useEffect(() => {
-    
-        // updatesvg()
-        zoomsvg()
-
+    // updatesvg()
+    zoomsvg();
   }, [
-     currentXZoomState,
-     currentYZoomState,
+    currentXZoomState,
+    currentYZoomState,
     currentGlobalZoomState,
     // xScale,
     // yScale
   ]);
 
-
-  const zoomsvg=()=>{
-    const widhth2=width-margin.left-margin.right
-    const height2=width-margin.top-margin.bottom
+  const zoomsvg = () => {
+    //const widhth2=width-margin.left-margin.right
+    // const height2=width-margin.top-margin.bottom
 
     //const svg = select(ref.current);
-    const svg = select(".listrect")
+    const svg = select(".listrect");
     const center = (event, target) => {
       if (event.sourceEvent) {
         const p = pointers(event, target);
@@ -54,28 +62,27 @@ const ZoomCanvas = ({data,xScale,yScale,
       return [widhth2 / 2, height2 / 2];
     };
 
-    
     const zoomed2 = (event) => {
- 
-      console.log("evennnnnnnnnnnt",event.transform);
+      console.log("evennnnnnnnnnnt", event.transform);
 
       const { k: newK, x: newX, y: newY } = event.transform;
       const { k: prevK, x: prevX, y: prevY } = currentGlobalZoomState;
       const point = center(event, svg);
-      console.log('pointfddgfdgfd',point);
+      console.log("pointfddgfdgfd", point);
 
-      const isZoomingX =
-        point[0] > margin.left + 50 && point[0] < widhth2;
-      const isZoomingY =
-        point[1] > margin.top && point[1] < height2 - 50;
-        isZoomingX &&
+      const isZoomingX = point[0] > margin.left && point[0] < widhth2;
+      const isZoomingY = point[1] > margin.top && point[1] < height2;
+
+      setp1({ x: point[0], y: point[1] });
+
+      isZoomingX &&
         setxzzoom(
           currentXZoomState
             .translate((newX - prevX) / prevK, 0)
             .scale(newK / prevK)
         );
       isZoomingY &&
-      setyzzoom(
+        setyzzoom(
           currentYZoomState
             .translate(0, (newY - prevY) / prevK)
             .scale(newK / prevK)
@@ -84,26 +91,17 @@ const ZoomCanvas = ({data,xScale,yScale,
       // Keeping track of the previous transform object
       // setCurrentGlobalZoomState(event.transform);
       // console.log("firstfgdgffg",changeh)
-      setglobalzoom(event.transform)
+      setglobalzoom(event.transform);
+    };
 
+    const zoomGlobal = zoom().scaleExtent([0.1, 500]).on("zoom", zoomed2);
 
-    }
+    // console.log("zooooo",zoomGlobal)
+    svg.call(zoomGlobal);
+    // console.log("svggggg cllllllllllll")
+  };
 
-    const zoomGlobal = zoom()
-      .scaleExtent([0.1, 500])
-      .on("zoom",zoomed2)
-
-
-
-      // console.log("zooooo",zoomGlobal)
-      svg.call(zoomGlobal);
-      // console.log("svggggg cllllllllllll")
-
-  }
-
-
-
-  const childrenWithProps = React.Children.map(children, child => {
+  const childrenWithProps = React.Children.map(children, (child) => {
     // Checking isValidElement is the safe way and avoids a
     // typescript error too.
 
@@ -112,14 +110,14 @@ const ZoomCanvas = ({data,xScale,yScale,
 
     // console.log("object",xScale(0));
     if (React.isValidElement(child)) {
-      return React.cloneElement(child, {data:data, xScale:xScale,yScale:yScale });
+      return React.cloneElement(child, {
+        data: data,
+        xScale: xScale,
+        yScale: yScale,
+      });
     }
     return child;
   });
-
-
-
-
 
   const updatesvg = () => {
     // console.log(this.props);
@@ -134,10 +132,21 @@ const ZoomCanvas = ({data,xScale,yScale,
   return (
     <>
       {/* {this.props.xScale !==null && this.props.xScale(1387212570000)} */}
-
+      <div>
+        x={p1.x}
+        y={p1.y}
+      </div>
       <svg className="mainsvg" id={"bg1"} height={height} width={width}>
         <g ref={ref} transform={`translate(${margin.left}, ${margin.top})`}>
-          <rect className={"listrect"} height={height-margin.top-margin.bottom} width={width-margin.left-margin.right}  pointerEvents="all" />
+          <clipPath id="clipping">
+            <rect x="0" y="0" width={widhth2} height={height2} />
+          </clipPath>
+          <rect
+            className={"listrect"}
+            height={height2}
+            width={width - margin.left - margin.right}
+            //pointerEvents="all"
+          />
 
           <g>{childrenWithProps}</g>
         </g>
